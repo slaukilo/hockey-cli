@@ -1,0 +1,22 @@
+{
+    "OHL": {
+        "id": 3,
+        "caption": "Ontario Hockey League"
+    },
+    "WHL": {
+        "id": 4,
+        "caption": "Western Hockey League"
+    },
+    "QMJHL": {
+        "id": 5,
+        "caption": "Quebec Major Junior Hockey League"
+    },
+    "NHL": {
+        "id": 57,
+        "caption": "National Hockey League"
+    },
+    "AHL": {
+        "id": 58,
+        "caption": "American Hockey League"
+    }
+}

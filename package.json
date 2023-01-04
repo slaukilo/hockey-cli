@@ -1,7 +1,7 @@
 {
   "name": "hockey-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple command-line interface that returns hockey stats like current game scores, standings and leaugue tables",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -37,3 +37,5 @@ program
 
     .command('config', 'Change configuration and defualts')
     .option('--help', 'Show help')
+
+program.run()
