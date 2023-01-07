@@ -5,12 +5,14 @@
   "main": "cli.ts",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node cli.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/figlet": "^1.5.5",
+    "@types/inquirer": "^9.0.3",
     "typescript": "^4.9.4"
   },
   "dependencies": {
@@ -26,6 +28,7 @@
     "figlet": "^1.5.2",
     "gradient-string": "^2.0.2",
     "inquirer": "^9.1.4",
+    "inquirer-autocomplete-prompt": "^3.0.0",
     "inquirer-interrupted-prompt": "^2.0.1",
     "inquirer-search-list": "^1.2.6",
     "listr": "^0.14.3",

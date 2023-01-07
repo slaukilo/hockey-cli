@@ -2,8 +2,30 @@
 
 // const inquirer = require('inquirer');
 import inquirer from 'inquirer';
+import figlet from 'figlet';
+import chalk from 'chalk';
 
-inquirer
+function logo()  {
+    figlet.text('HOCKEY',{
+        font: 'Slant',
+        horizontalLayout: 'default',
+        verticalLayout: 'default',
+        width:100,
+        whitespaceBreak: true
+        }, 
+        function(err:any, data:any) {
+            if (err) {
+                console.log('Error');
+                console.dir(err)
+                return;
+            }
+        // return data
+        console.log(chalk.cyanBright.bold(data))
+    })
+};
+
+logo();
+inquirer 
     .prompt([
         {
             type: 'list',
@@ -15,9 +37,11 @@ inquirer
             ],
         },
     ])
+    
     .then((answers:any) => {
         console.info('Option:', answers.mainMenu);
     });
+
 
 // const { program } = require('@caporal/core');
 
