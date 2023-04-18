@@ -5,6 +5,7 @@ import inquirer from 'inquirer';
 import figlet from 'figlet';
 import chalk from 'chalk';
 
+// cli logo funtion
 function logo()  {
     figlet.text('HOCKEY',{
         font: 'Slant',
@@ -24,25 +25,28 @@ function logo()  {
     })
 };
 
-logo();
-inquirer 
-    .prompt([
-        {
-            type: 'list',
-            name: 'mainMenu',
-            message: 'Select a league:',
-            default: 'NHL',
-            choices: [
-                'NHL', 'OHL', 'WHL', 'QMJHL', 'AHL',
-            ],
-        },
-    ])
-    
-    .then((answers:any) => {
-        console.info('Option:', answers.mainMenu);
-    });
 
+function CLI() {
+    logo();
+    return inquirer 
+        .prompt([
+            {
+                type: 'list',
+                name: 'mainMenu',
+                message: 'Select a league:',
+                default: 'NHL',
+                choices: [
+                    'NHL', 'OHL', 'WHL', 'QMJHL', 'AHL',
+                ],
+            },
+        ])
+        
+        .then((answers:any) => {
+            console.info('Option:', answers.mainMenu);
+        });
+}
 
+CLI();
 // const { program } = require('@caporal/core');
 
 // const pkg = require('../package.json');
