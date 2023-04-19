@@ -5,7 +5,7 @@ import inquirer from 'inquirer';
 import figlet from 'figlet';
 import chalk from 'chalk';
 
-// cli logo funtion
+// cli logo funtion **doesn't call before prompt
 function logo()  {
     figlet.text('HOCKEY',{
         font: 'Slant',
@@ -26,24 +26,37 @@ function logo()  {
 };
 
 
-function CLI() {
-    logo();
-    return inquirer 
-        .prompt([
-            {
-                type: 'list',
-                name: 'mainMenu',
-                message: 'Select a league:',
-                default: 'NHL',
-                choices: [
-                    'NHL', 'OHL', 'WHL', 'QMJHL', 'AHL',
-                ],
-            },
-        ])
-        
-        .then((answers:any) => {
-            console.info('Option:', answers.mainMenu);
-        });
+async function CLI() {
+    // logo();
+    // Fonts from http://patorjk.com/software/taag/#p=testall&f=Graffiti&t=HOCKEY
+    // Optional fonts: Slant, ANSI Shadow, Speed, Larry 3D, Greek, NT Greek, Stop
+    console.log(chalk.redBright.bold(figlet.textSync('HOCKEY', {font: 'Larry 3D'})));
+
+    // Prompt the user to select a league
+    const leagueAnswer = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'league',
+            message: 'Select a league',
+            default:'NHL',
+            choices: ['NHL', 'OHL', 'WHL', 'QMJHL', 'AHL']
+        },
+    ]);
+
+    // Prompt the user to select a sub-menu based on the selected league
+    const subMenuAnswer = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'stats',
+            message: `Select an option for ${leagueAnswer.league}`,
+            default:'scores',
+            choices: ['scores', 'fixtures', 'standing', 'lists']
+        },
+    ]);
+
+    // Log the user's answers
+    console.log(`Selected league: ${chalk.green.bold(leagueAnswer.league)}`);
+    console.log(`Selected sub-menu: ${chalk.green.bold(subMenuAnswer.stats)}`);    
 }
 
 CLI();
