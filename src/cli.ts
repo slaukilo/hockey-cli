@@ -1,9 +1,10 @@
 #!/usr/bin/env ts-node
 
-// const inquirer = require('inquirer');
+
 import inquirer from 'inquirer';
 import figlet from 'figlet';
 import chalk from 'chalk';
+import { getHockeyData } from '../utils/api.js';
 
 // cli logo funtion **doesn't call before prompt
 function logo()  {
@@ -54,9 +55,15 @@ async function CLI() {
         },
     ]);
 
-    // Log the user's answers
-    console.log(`Selected league: ${chalk.green.bold(leagueAnswer.league)}`);
-    console.log(`Selected sub-menu: ${chalk.green.bold(subMenuAnswer.stats)}`);    
+    // Call the API function to get data based on user choices
+    const data = await getHockeyData(leagueAnswer.league, subMenuAnswer.subMenu);
+
+    // Log the fetched data
+    console.log(data);
+
+    // // Log the user's answers
+    // console.log(`Selected league: ${chalk.green.bold(leagueAnswer.league)}`);
+    // console.log(`Selected sub-menu: ${chalk.green.bold(subMenuAnswer.stats)}`);    
 }
 
 CLI();

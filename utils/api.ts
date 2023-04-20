@@ -1,17 +1,20 @@
 import * as dotenv from 'dotenv'
 dotenv.config();
 
+import json_data from '../ids.json'
 import axios from 'axios';
 const API_KEY = process.env.API_KEY;
 
+// Set up axios instance with default headers and base URL
 const config = axios.create({
-    baseURL: 'https://api-hockey.p.rapidapi.com',
+    baseURL: 'https://v1.hockey.api-sports.io/',
     headers: {
-        'x-rapidapi-host': 'api-hockey.p.rapidapi.com',
+        'x-rapidapi-host': 'v1.hockey.api-sports.io',
         'x-rapidapi-key': API_KEY,
     }
 });
 
+// Define function to fetch hockey data based on user choices
 export async function getHockeyData(league:string, subMenu: string) {
     let endpoint = ''
     switch (subMenu) {
