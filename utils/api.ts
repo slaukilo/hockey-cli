@@ -15,20 +15,21 @@ const config = axios.create({
 });
 
 // Define function to fetch hockey data based on user choices
-export async function getHockeyData(league:string, subMenu: string) {
+export async function getHockeyData(league:string, subMenu: string, query: object) {
     let endpoint = ''
     switch (subMenu) {
         case 'scores':
             endpoint = `scores/${league}/latest`
             break;
         case 'fixtures':
-            endpoint = `fixtures/${league}/next/10`
+            endpoint = 'games'
             break;
         case 'standings':
-            endpoint = `standings/${league}/next/10`
+            // endpoint = `standings/${league}/next/10`
+            endpoint = 'standings'
             break;
         case 'lists':
-            endpoint= `teams/list/${league}`;
+            endpoint= 'leagues';
             break;
         default:
             try {
@@ -38,6 +39,6 @@ export async function getHockeyData(league:string, subMenu: string) {
                 console.log(e)
             }
     }
-    const res = await config.get(endpoint);
+    const res = await config.get(endpoint, { params: query });
     return res.data;
 }

@@ -55,8 +55,20 @@ async function CLI() {
         },
     ]);
 
+    // Create the query object based on the sub-menu selection
+    let query = {};
+    if (subMenuAnswer.stats === 'scores') {
+        query = {};
+    } else if (subMenuAnswer.stats === 'fixtures') {
+        query = {league: `${leagueAnswer}`};
+    } else if (subMenuAnswer.stats === 'standings') {
+        query = {league: `${leagueAnswer}`, season: '2023'}
+    } else if (subMenuAnswer.stats === 'lists') {
+        query = {league: `${leagueAnswer}`}
+    }
+
     // Call the API function to get data based on user choices
-    const data = await getHockeyData(leagueAnswer.league, subMenuAnswer.subMenu);
+    const data = await getHockeyData(leagueAnswer.league, subMenuAnswer.subMenu, query);
 
     // Log the fetched data
     console.log(data);
